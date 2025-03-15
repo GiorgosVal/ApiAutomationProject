@@ -1,0 +1,12 @@
+name: Daily Test Run
+on:
+  schedule:
+    - cron: "0 3 * * *"  # Runs at 3 AM UTC daily
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  smoke-tests:
+    uses: ./.github/workflows/module_run_tests.yml

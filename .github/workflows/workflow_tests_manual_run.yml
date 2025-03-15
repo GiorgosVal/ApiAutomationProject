@@ -1,0 +1,23 @@
+name: Manual Test Execution
+on:
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: 'Test suites to run'
+        required: true
+        type: choice
+        options:
+          - regression
+          - happy_paths
+          - negative_paths
+          - authors_regression
+          - books_regression
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  regression-tests:
+    uses: ./.github/workflows/module_run_tests.yml
+    with:
+      suite: ${{ inputs.suite }}
